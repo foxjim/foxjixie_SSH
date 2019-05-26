@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.hnist.modul.Images" table="imgePath" catalog="foxjixie">
+       
+        <id name="iid" type="java.lang.Integer">
+            <column name="iid" length="15" />
+            <generator class="native"></generator>
+        </id>
+        
+         <property name="img01" type="java.lang.String">
+            <column name="img01" length="100" not-null="true"/>
+        </property>
+        
+         <property name="img02" type="java.lang.String">
+            <column name="img02" length="100" not-null="true"/>
+        </property>
+        
+         <property name="img03" type="java.lang.String">
+            <column name="img03" length="100" not-null="true"/>
+        </property>
+        
+         <property name="img04" type="java.lang.String">
+            <column name="img04" length="100" not-null="true"/>
+        </property>
+        
+         <property name="img05" type="java.lang.String">
+            <column name="img05" length="100" not-null="true"/>
+        </property>
+        
+         <property name="imgTime" type="java.lang.String">
+            <column name="imgTime" length="10"/>
+        </property>
+        
+         <property name="imgOk" type="java.lang.String">
+            <column name="imgOk" length="5"/>
+        </property>
+        
+        
+        
+        
+ 
+    </class>
+</hibernate-mapping>

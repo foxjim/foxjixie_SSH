@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.hnist.modul.adminUser" table="adminUser" catalog="foxjixie">
+       
+        <id name="aduid" type="java.lang.Integer">
+            <column name="aduid" length="15" />
+            <generator class="native"></generator>
+        </id>
+        
+         <property name="adName" type="java.lang.String">
+            <column name="adName" length="25" not-null="true"/>
+        </property>
+        
+        <property name="adPassword" type="java.lang.String">
+            <column name="adPassword" length="25" not-null="true"/>
+        </property>
+        
+         <property name="adDepartment" type="java.lang.String">
+            <column name="adDepartment" length="20" />
+        </property>
+        
+         <property name="adPosition" type="java.lang.String">
+            <column name="adPosition" length="10"/>
+        </property>
+        
+         <property name="adPhoneNumber" type="java.lang.String">
+            <column name="adPhoneNumber" length="15"/>
+        </property>
+        
+        
+        
+    </class>
+</hibernate-mapping>

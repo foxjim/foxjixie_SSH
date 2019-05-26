@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.hnist.modul.User" table="user" catalog="foxjixie">
+       
+        <id name="userid" type="java.lang.Integer">
+            <column name="id" length="15" />
+            <generator class="native"></generator>
+        </id>
+        
+        <property name="userNo" type="java.lang.String">
+            <column name="userNo" length="20" not-null="true"/>
+        </property>
+        
+         <property name="userCount" type="java.lang.String">
+            <column name="userCount" length="15" not-null="true"/>
+        </property>
+        
+         <property name="userName" type="java.lang.String">
+            <column name="userName" length="15" not-null="true"/>
+        </property>
+       
+        
+        <property name="userPassword" type="java.lang.String">
+            <column name="password" length="20" not-null="true" />
+        </property>
+        
+         <property name="userCollege" type="java.lang.String">
+            <column name="userCollege" length="40" not-null="true" />
+        </property>
+        
+        <property name="telPhone" type="java.lang.String">
+            <column name="telPhone" length="20"  />
+        </property>
+        
+        <property name="email" type="java.lang.String">
+            <column name="email" length="20" />
+        </property>
+        
+ 
+    </class>
+</hibernate-mapping>

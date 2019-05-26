@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.hnist.modul.NewsHead" table="newsHead" catalog="foxjixie">
+       
+        <id name="nhid" type="java.lang.Integer">
+            <column name="nhid" length="15" />
+            <generator class="native"></generator>
+        </id>
+        
+         <property name="nhClass" type="java.lang.String">
+            <column name="nhClass" length="8" not-null="true"/>
+        </property>
+        
+         <property name="nhTitle" type="java.lang.String">
+            <column name="nhTitle" length="30" not-null="true"/>
+        </property>
+        
+         <property name="nhTime" type="java.lang.String">
+            <column name="nhTime" length="15" not-null="true"/>
+        </property>
+        
+         <property name="nhPerson" type="java.lang.String">
+            <column name="nhPerson" length="20" />
+        </property>
+        
+         <property name="otherLink" type="java.lang.String">
+            <column name="otherLink" length="300" />
+        </property>
+        
+        <property name="onlionLink" type="java.lang.String">
+            <column name="onlionLink" length="20" />
+        </property>
+        
+         <property name="userLink" type="java.lang.String">
+            <column name="userLink" length="2" />
+        </property>
+        
+        
+    </class>
+</hibernate-mapping>

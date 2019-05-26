@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- 默认文件传输大小上限为2M  加入下列语句可以提高到11M -->
+	<constant name="struts.multipart.maxSize" value="10000000"/>
+	
+	  
+	<package name="struts2" extends="struts-default" namespace="/">
+	
+<!-- 将action交给Spring创建（建议用这种方式，可以使用AOP对它进行管理）
+    Struts2对action进行配置时， class不用写action的全路径，只需要写 Spring配置action的id即可-->	
+<!-- 配置action当与spring整合,class=bean的名称（如果bean没有指定value，则首写字母要小写）） 
+	如果没有在applicationContent.xml中配置action类，那么在class中要写全路径
+		<action name="add" class="org.hnist.action.UserAction" method="addUser" >-->
+	    
+	<!-- User 类方法 -->
+	    
+	    <!-- 首页显示图片 -->
+	    <action name="loginUser" class="userAction" method="loginUser" >
+			<result name="success">index.jsp</result>
+			<result name="error">/login.jsp</result>
+		</action>
+		
+		<!-- 用户注册 -->
+		 <action name="registerUser" class="userAction" method="registerUser" >
+			<result name="success">index.jsp</result>
+			<result name="error">/register.jsp</result>
+		</action>
+		
+		<!-- 添加会员 -->
+		 <action name="InsertUser" class="userAction" method="registerUser" >
+			<result name="success">/main/UserSuccess.jsp</result>
+			<result name="error">/main/InsertUser.jsp</result>
+		</action>
+		
+		<!-- 批量添加会员 -->
+		 <action name="InsertByExcel" class="userAction" method="InsertByExcel" >
+			<result name="success">/main/InsertUserExcel.jsp</result>
+			<result name="error">/main/InsertUser.jsp</result>
+		</action>
+		
+		<!-- 导出会员列表 -->
+		 <action name="getUserExcel" class="userAction" method="getUserExcel" >
+			<result name="success">/getUserExcel.jsp</result>
+			<result name="error">/main/InsertUser.jsp</result>
+		</action>
+		
+		<!-- 找回密码 -->
+		  <action name="findNewPassword" class="userAction" method="findNewPassword" >
+			<result name="existUser">/rePasword.jsp</result>
+			<result name="unknowUser">/forgetPassword.jsp</result>
+			<result name="saveSUCCESS">/login.jsp</result>
+			<result name="ERROR">/rePasword.jsp</result>
+		</action>
+		
+		<!-- 查找所有的会员-->
+		 <action name="queryAllUser" class="userAction" method="queryAllUser" >
+			<result name="success">/main/userList.jsp</result>
+		</action>
+		
+		<!-- 删除会员信息-->
+		 <action name="deleteUser" class="userAction" method="deleteUser" >
+			<result name="success">/main/userList.jsp</result>
+		</action>
+		
+		<!-- 编辑会员信息-->
+		 <action name="editUser" class="userAction" method="editUser" >
+			<result name="edit">/main/editUser.jsp</result>
+			<result name="success">/main/userList.jsp</result>
+			<result name="error">/main/editUser.jsp</result>
+		</action>
+		
+		
+	<!-- User 类方法 -->
+		 
+		 
+	 <!-- ImageAction类方法 图片-->
+		 
+		 <!-- 导入图片 -->
+		 <action name="uploadImg" class="imageAction" method="uploadImg" >
+			<result name="success">/main/lbsuccess.jsp</result>
+			<result name="ERROR">/main/uploadImgError.jsp</result>
+		</action>
+		
+		<!-- 首页显示图片 -->
+		 <action name="Index" class="imageAction" method="queryPictures" >
+			<result name="success">/front/index.jsp</result>
+			<result name="ERROR">/login.jsp</result>
+		</action>
+		
+		<!-- 显示所有图片 -->
+		 <action name="queryAllPictures" class="imageAction" method="queryAllPictures" >
+			<result name="success">/main/imagelist.jsp</result>
+		</action>
+		
+		<!-- 通过序号删除图片 -->
+		 <action name="deleteImages" class="imageAction" method="deleteImages" >
+			<result name="success">/main/imagelist.jsp</result>
+			<result name="ERROR">/main/imageError.jsp</result>
+		</action>
+		
+		<!-- 通过序号修改显示图片 -->
+		 <action name="setupImages" class="imageAction" method="setupImages" >
+			<result name="success">/main/imagelist.jsp</result>
+			<result name="ERROR">/main/imageError.jsp</result>
+		</action>
+		
+		
+	<!-- ImageAction类方法 -->
+	
+	<!-- Devhisotry类方法 发展历史  -->
+	
+		<!-- 导入数据的方法 -->
+		 <action name="saveDevhistory" class="devhistoryAction" method="saveDevhistory" >
+			<result name="success">/main/DevhistorySuccess.jsp</result>
+			<result name="ERROR">/main/DevhistoryError.jsp</result>
+		</action>
+		
+		<!-- 查找所有数据的方法-->
+		 <action name="queryAllDevhistory" class="devhistoryAction" method="queryAllDevhistory" >
+			<result name="success">/main/DevhistoryList.jsp</result>
+			<result name="ERROR">/main/index.jsp</result>
+		</action>
+		
+		<!-- 删除数据的方法 -->
+		 <action name="deleteDevhistory" class="devhistoryAction" method="deleteDevhistory" >
+			<result name="success">/main/DevhistoryList.jsp</result>
+			<result name="ERROR">/main/DevhistoryError.jsp</result>
+		</action>
+		
+		<!-- 更新数据的方法 -->
+		 <action name="editDevhistory" class="devhistoryAction" method="editDevhistory" >
+			<result name="edit">/main/editDevhistory.jsp</result>	
+			<result name="success">/main/DevhistoryList.jsp</result>
+			<result name="ERROR">/main/DevhistoryError.jsp</result>
+		</action>
+	
+	<!-- Devhistory类方法 -->
+	
+	
+	<!-- ContactInformation 社团联系方式 -->
+		<!-- 导入数据的方法 -->
+		 <action name="insertContactInformation" class="contactInformationAction" method="insertContactInformation" >
+			<result name="success">/main/ContactInformationSuccess.jsp</result>
+			<result name="ERROR">/main/ContactInformationError.jsp</result>
+		</action>
+		
+		<!-- 查找所有数据的方法-->
+		 <action name="queryAllContactInformation" class="contactInformationAction" method="queryAllContactInformation" >
+			<result name="success">/main/ContactInformationList.jsp</result>
+			<result name="ERROR">/main/index.jsp</result>
+		</action>
+		
+		<!-- 删除数据的方法 -->
+		 <action name="deleteContactInformation" class="contactInformationAction" method="deleteContactInformation" >
+			<result name="success">/main/ContactInformationList.jsp</result>
+			<result name="ERROR">/main/ContactInformationError.jsp</result>
+		</action>
+		
+		<!-- 更新数据的方法 -->
+		 <action name="editContactInformation" class="contactInformationAction" method="editContactInformation" >
+			<result name="edit">/main/editContactInformation.jsp</result>	
+			<result name="success">/main/ContactInformationList.jsp</result>
+			<result name="ERROR">/main/ContactInformationError.jsp</result>
+		</action>
+	
+	<!-- ContactInformation -->
+	
+	<!-- SocietyNumberAction 社团成员 -->
+		<!-- 关于社团显示的方法 -->
+		 <action name="contact" class="societyNumberAction" method="contactInformation" >
+			<result name="success">/front/contact.jsp</result>
+		</action>
+	
+		<!-- 导入数据的方法 -->
+		 <action name="insertSocietyNumber" class="societyNumberAction" method="insertSocietyNumber" >
+			<result name="success">/main/SocietyNumberSuccess.jsp</result>
+			<result name="ERROR">/main/ContactInformationError.jsp</result>
+		</action>
+		
+		<!-- 查找所有数据的方法-->
+		 <action name="queryAllSocietyNumber" class="societyNumberAction" method="queryAllSocietyNumber" >
+			<result name="success">/main/SocietyNumberList.jsp</result>
+			<result name="ERROR">/main/index.jsp</result>
+		</action>
+		
+		<!-- 编辑数据的方法-->
+		 <action name="editSocietyNumber" class="societyNumberAction" method="editSocietyNumber" >
+			<result name="edit">/main/editSocietyNumber.jsp</result>
+			<result name="success">/main/SocietyNumberList.jsp</result>
+			<result name="ERROR">/main/SocietyNumberList.jsp</result>
+		</action>
+		
+		<!-- 删除数据的方法-->
+		 <action name="deleteSocietyNumber" class="societyNumberAction" method="deleteSocietyNumber" >
+			<result name="success">/main/SocietyNumberList.jsp</result>
+		</action>
+		
+		
+	<!-- SocietyNumberAction -->
+	
+	
+	<!-- SocietyContentAction 社团资源-->
+		
+		<!-- 页面显示社团资源的方法 -->
+		 <action name="SocietyContent" class="societyContentAction" method="querySocietyContent" >
+			<result name="success">/front/content.jsp</result>
+		</action>
+	
+	
+		<!-- 查找所有数据的方法-->
+		 <action name="querySocietyContent" class="societyContentAction" method="querySocietyContent" >
+			<result name="success">/main/SocietyContentList.jsp</result>
+			<result name="ERROR">/main/index.jsp</result>
+		</action>
+		
+		
+	
+		<!-- 删除数据的方法-->
+		 <action name="deleteSocietyContent" class="societyContentAction" method="deleteSocietyContent" >
+			<result name="success">/main/SocietyContentList.jsp</result>
+		</action>
+		
+		<!-- 导入数据的方法-->
+		 <action name="insertSocietyContent" class="societyContentAction" method="insertSocietyContent" >
+			<result name="success">/main/SocietyContentSuccess.jsp</result>
+		</action>
+		
+		<!-- 编辑数据的方法-->
+		 <action name="editSocietyContent" class="societyContentAction" method="editSocietyContent" >
+			<result name="edit">/main/editSocietyContent.jsp</result>
+			<result name="success">/main/SocietyContentList.jsp</result>
+			<result name="ERROR">/main/SocietyContentError.jsp</result>
+		</action>
+	<!-- SocietyContentAction -->
+		
+
+	<!-- SocietyCultureAction 社团文化 -->
+	
+		<!-- 页面显示数据的方法 -->
+		 <action name="culture" class="societyCultureAction" method="queryAllSocietyCulture" >
+			<result name="success">/front/culture.jsp</result>
+		</action>
+
+		<!--  导入数据的方法  -->
+		 <action name="insertSocietyCulture" class="societyCultureAction" method="insertSocietyCulture" >
+			<result name="success">/main/SocietyCultureSuccess.jsp</result>
+			<result name="ERROR">/main/SocietyCultureError.jsp</result>
+		</action>
+		
+		<!-- 查找数据的方法 -->
+		 <action name="queryAllSocietyCulture" class="societyCultureAction" method="queryAllSocietyCulture" >
+			<result name="success">/main/SocietyCultureList.jsp</result>
+			<result name="ERROR">/main/index.jsp</result>
+		</action>
+		
+		<!-- 删除数据的方法 -->
+		 <action name="deleteSocietyCulture" class="societyCultureAction" method="deleteSocietyCulture" >
+			<result name="success">/main/SocietyCultureList.jsp</result>
+			<result name="ERROR">/main/SocietyCultureError.jsp</result>
+		</action>
+		
+		<!-- 编辑数据的方法 -->
+		 <action name="editSocietyCulture" class="societyCultureAction" method="editSocietyCulture" >
+			<result name="edit">/main/editSocietyCulture.jsp</result>
+			<result name="success">/main/SocietyCultureList.jsp</result>
+			<result name="ERROR">/main/SocietyCultureError.jsp</result>
+		</action>
+	
+	<!-- SocietyCultureAction -->
+	
+	
+	
+	<!-- NewsHeadAction  新闻头-->
+		<!-- 查找所有的数据 -->
+		 <action name="queryNewsHead" class="newsHeadAction" method="queryNewsHead" >
+			<result name="success">/main/newsHeadList.jsp</result>
+		</action>
+		
+		<!-- 页面显示所有的数据 -->
+		 <action name="News" class="newsHeadAction" method="queryNewsHead" >
+			<result name="success">/front/NewsTest.jsp</result>
+		</action>
+		
+		<!-- 删除所有的数据 -->
+		 <action name="deleteNewsHead" class="newsHeadAction" method="deleteNewsHead" >
+			<result name="success">/main/newsHeadList.jsp</result>
+			<result name="error">/main/newsHeadError.jsp</result>
+		</action>
+		
+		<!-- 导入数据 -->
+		 <action name="insertNewsHead" class="newsHeadAction" method="insertNewsHead" >
+			<result name="success">/main/newsHeadSuccess.jsp</result>
+			<result name="error">/main/InsertNewsHead.jsp</result>
+		</action>
+		
+		<!-- 编辑数据 -->
+		<action name="editNewsHead" class="newsHeadAction" method="editNewsHead" >
+		 	<result name="edit">/main/editNewsHead.jsp</result>
+			<result name="success">/main/newsHeadList.jsp</result>
+			<result name="error">/main/newsHeadError.jsp</result>
+		</action>
+		
+		<!-- 更新新闻使用的链接 -->
+		 <action name="updateUserLink" class="newsHeadAction" method="updateUserLink" >
+			<result name="success">/main/newsHeadList.jsp</result>
+			<result name="error">/main/newsHeadError.jsp</result>
+		</action>
+		
+	<!-- NewsHeadAction -->
+	
+	<!-- NewsContentAction 新闻内容 -->
+	 <action name="insertNewsContent" class="newsContentAction" method="insertNewsContent" >
+			<result name="success">/main/utf8-jsp/show.jsp</result>
+			
+		</action>
+		
+	
+	
+	<!-- NewsContentAction 新闻内容 -->
+	
+	<!-- AdminUserAction -->
+		<!-- 登陆的方法 -->
+		<action name="adminlogin" class="adminUserAction" method="login">
+			<result name="success">/main/action.jsp</result>
+			<result name="error">/main/login.jsp</result>	
+		</action>
+		
+		<!-- 注册的方法 -->
+		<action name="regist" class="adminUserAction" method="insertAdminUser">
+			<result name="success">/main/action.jsp</result>
+			<result name="error">/main/regist.jsp</result>	
+		</action>
+		
+		<!-- 查找所有的数据 -->
+		<action name="queryAdminUser" class="adminUserAction" method="queryAdminUser">
+			<result name="success">/main/AdminUserList.jsp</result>
+		</action>
+		
+		<!-- 删除数据的方法 -->
+		<action name="deleteAdminUser" class="adminUserAction" method="deleteAdminUser">
+			<result name="success">/main/AdminUserList.jsp</result>
+			<result name="error">/main/AdminUserError.jsp</result>
+		</action>
+		
+			<!-- 重置密码的方法 -->
+		<action name="resetPassword" class="adminUserAction" method="resetPassword">
+			<result name="reset">/main/resetAdminUser.jsp</result>
+			<result name="success">/main/action.jsp</result>
+			<result name="error">/main/resetlogin.jsp</result>
+		</action>
+	
+	
+	<!-- AdminUserAction -->
+	
+	
+	</package>
+	
+</struts>

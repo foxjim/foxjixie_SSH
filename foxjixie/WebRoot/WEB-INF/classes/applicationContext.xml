@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+<!-- 引入外部属性文件 -->
+<context:property-placeholder location="classpath:jdbc.properties"/>
+		
+<!-- 配置c3p0连接池 -->
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" >
+<property name="driverClass" value="${jdbc.driverClass}"></property>
+<property name="jdbcUrl" value="${jdbc.url}"></property>
+<property name="user" value="${jdbc.username}"></property>
+<property name="password" value="${jdbc.password}"></property>
+		</bean>
+
+<!-- 配置hibernate一些相关的属性 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 注入连接池 -->
+ 			<property name="dataSource" ref="dataSource"/>
+
+		<!-- 配置实体映射文件 -->
+			<property name="mappingResources">
+			<list>
+				<value>/org/hnist/modul/User.hbm.xml</value>
+				<value>/org/hnist/modul/Image.hbm.xml</value>
+				<value>/org/hnist/modul/Devhistory.hbm.xml</value>
+				<value>/org/hnist/modul/SocietyNumber.hbm.xml</value>
+				<value>/org/hnist/modul/ContactInformation.hbm.xml</value>
+				<value>/org/hnist/modul/SocietyCulture.hbm.xml</value>
+				<value>/org/hnist/modul/SocietyContent.hbm.xml</value>
+				<value>/org/hnist/modul/NewsHead.hbm.xml</value>
+				<value>/org/hnist/modul/NewsContent.hbm.xml</value>
+				<value>/org/hnist/modul/adminUser.hbm.xml</value>
+			</list>
+			</property>
+	  	<!-- 配置hibernate的属性 -->
+			<property name="hibernateProperties">
+ 				<props>
+ 					<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+ 					<prop key="hibernate.show_sql">true</prop>
+ 					<prop key="hibernate.format_sql">true</prop>
+ 					<prop key="hibernate.hbm2ddl.auto">update</prop>
+ 				</props>
+ 			</property>
+	  </bean>
+
+<!-- 配置业务层的类 -->
+		<bean id="userService" class="org.hnist.service.UserService">
+			<property name="userDao" ref="userDao"/>
+		</bean>
+		
+		<bean id="imageService" class="org.hnist.service.ImageService">
+			<property name="imageDao" ref="imageDao"/>
+		</bean>
+		
+		<bean id="devhistoryService" class="org.hnist.service.DevhistoryService">
+			<property name="devhistoryDao" ref="devhistoryDao"/>
+		</bean>
+		
+		
+		<bean id="contactInformationService" class="org.hnist.service.ContactInformationService">
+			<property name="contactInformationDao" ref="contactInformationDao"/>
+		</bean>
+		
+		
+		<bean id="societyNumberService" class="org.hnist.service.SocietyNumberService">
+			<property name="societyNumberDao" ref="societyNumberDao"/>
+		</bean>
+		
+		<bean id="societyContentService" class="org.hnist.service.SocietyContentService">
+			<property name="societyContentDao" ref="societyContentDao"/>
+		</bean>
+		
+		<bean id="societyCultureService" class="org.hnist.service.SocietyCultureService">
+			<property name="societyCultureDao" ref="societyCultureDao"/>
+		</bean>
+		
+		<bean id="newsHeadService" class="org.hnist.service.NewsHeadService">
+			<property name="newsHeadDao" ref="newsHeadDao"/>
+		</bean>
+		
+		<bean id="newsContentService" class="org.hnist.service.NewsContentService">
+			<property name="newsContentDao" ref="newsContentDao"/>
+		</bean>
+		
+		<bean id="adminUserService" class="org.hnist.service.AdminUserService">
+			<property name="adminUserDao" ref="adminUserDao"/>
+		</bean>
+		
+		
+		
+		
+<!-- 配置DAO的类 -->
+		<bean id="userDao" class="org.hnist.dao.UserDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>	
+		
+		<bean id="imageDao" class="org.hnist.dao.ImageDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>	
+		
+		<bean id="devhistoryDao" class="org.hnist.dao.DevhistoryDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>	
+		
+		<bean id="contactInformationDao" class="org.hnist.dao.ContactInformationDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>	
+		
+		<bean id="societyNumberDao" class="org.hnist.dao.SocietyNumberDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>	
+		
+		<bean id="societyContentDao" class="org.hnist.dao.SocietyContentDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>	
+		
+		<bean id="societyCultureDao" class="org.hnist.dao.SocietyCultureDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>	
+		
+		<bean id="newsHeadDao" class="org.hnist.dao.NewsHeadDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>	
+		
+		<bean id="newsContentDao" class="org.hnist.dao.NewsContentDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>	
+		
+		<bean id="adminUserDao" class="org.hnist.dao.AdminUserDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>	
+		
+<!-- 配置Action的类 scope=prototype表示多例，spring默认为单例
+       这里不配置的话，就由structs.xml文件管理action类-->
+		 <bean id="userAction" class="org.hnist.action.UserAction" scope="prototype">
+			<!-- 手动注入Service（Action交给Spring去管理，需要手动注入Service） -->
+			<property name="userService" ref="userService"/>
+		</bean>
+		
+		<bean id="imageAction" class="org.hnist.action.ImageAction" scope="prototype">
+			<!-- 手动注入Service（Action交给Spring去管理，需要手动注入Service） -->
+			<property name="imageService" ref="imageService"/>
+		</bean>	
+		
+		
+		<bean id="devhistoryAction" class="org.hnist.action.DevhistoryAction" scope="prototype">
+			<!-- 手动注入Service（Action交给Spring去管理，需要手动注入Service） -->
+			<property name="devhistoryService" ref="devhistoryService"/>
+		</bean>	
+		
+		<bean id="contactInformationAction" class="org.hnist.action.ContactInformationAction" scope="prototype">
+			<!-- 手动注入Service（Action交给Spring去管理，需要手动注入Service） -->
+			<property name="contactInformationService" ref="contactInformationService"/>
+		</bean>	
+		
+		<bean id="societyNumberAction" class="org.hnist.action.SocietyNumberAction" scope="prototype">
+			<!-- 手动注入Service（Action交给Spring去管理，需要手动注入Service） -->
+			<property name="societyNumberService" ref="societyNumberService"/>
+		</bean>	
+		
+		<bean id="societyContentAction" class="org.hnist.action.SocietyContentAction" scope="prototype">
+			<!-- 手动注入Service（Action交给Spring去管理，需要手动注入Service） -->
+			<property name="societyContentService" ref="societyContentService"/>
+		</bean>	
+		
+		<bean id="societyCultureAction" class="org.hnist.action.SocietyCultureAction" scope="prototype">
+			<!-- 手动注入Service（Action交给Spring去管理，需要手动注入Service） -->
+			<property name="societyCultureService" ref="societyCultureService"/>
+		</bean>
+		
+		<bean id="newsHeadAction" class="org.hnist.action.NewsHeadAction" scope="prototype">
+			<!-- 手动注入Service（Action交给Spring去管理，需要手动注入Service） -->
+			<property name="newsHeadService" ref="newsHeadService"/>
+		</bean>
+		
+		<bean id="newsContentAction" class="org.hnist.action.NewsContentAction" scope="prototype">
+			<!-- 手动注入Service（Action交给Spring去管理，需要手动注入Service） -->
+			<property name="newsContentService" ref="newsContentService"/>
+		</bean>
+		
+		<bean id="adminUserAction" class="org.hnist.action.AdminUserAction" scope="prototype">
+			<!-- 手动注入Service（Action交给Spring去管理，需要手动注入Service） -->
+			<property name="adminUserService" ref="adminUserService"/>
+		</bean>
+		
+	
+<!--配置事务管理器 -->
+	<bean id="transactionManager"  class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/> 
+	</bean>
+	
+<!--开启注解事务 -->
+		<tx:annotation-driven transaction-manager="transactionManager" />
+</beans>

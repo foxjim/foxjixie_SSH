@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.hnist.modul.SocietyCulture" table="societyCulture" catalog="foxjixie">
+       
+        <id name="scid" type="java.lang.Integer">
+            <column name="scid" length="15" />
+            <generator class="native"></generator>
+        </id>
+        
+         <property name="cultureClass" type="java.lang.String">
+            <column name="cultureClass" length="30" not-null="true"/>
+        </property>
+        
+         <property name="cultureTime" type="java.lang.String">
+            <column name="cultureTime" length="20" not-null="true"/>
+        </property>
+        
+         <property name="cultureContent" type="java.lang.String">
+            <column name="cultureContent" length="100" not-null="true"/>
+        </property>
+        
+         <property name="cultureLink" type="java.lang.String">
+            <column name="cultureLink" length="300" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

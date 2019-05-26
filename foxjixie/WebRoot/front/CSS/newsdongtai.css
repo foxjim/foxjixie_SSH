@@ -1,0 +1,34 @@
+@charset "UTF-8";
+.header-pic{
+	width:100%;
+	text-align:center;
+	height:350px;
+	background-color:#80ffff;
+	margin:0 auto;
+}
+
+.newsbodyer{
+	width:100%;
+	margin:40px auto;
+}
+
+.nb-left{
+	float:left;
+	width:200px;
+	height:100px;
+	/*background:blue;*/
+	
+	margin-left:20%;
+}
+
+.nbl-word{
+	text-align:center;
+}
+
+.nblw-word{
+	width:160px;
+	height:25px;
+	padding-left:20px;
+	
+	background-color:blue;
+}

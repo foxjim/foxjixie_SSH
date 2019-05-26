@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.hnist.modul.SocietyContent" table="societyContent" catalog="foxjixie">
+       
+        <id name="scid" type="java.lang.Integer">
+            <column name="scid" length="15" />
+            <generator class="native"></generator>
+        </id>
+        
+         <property name="contentClass" type="java.lang.String">
+            <column name="contentClass" length="30" not-null="true"/>
+        </property>
+        
+         <property name="contentName" type="java.lang.String">
+            <column name="contentName" length="100" not-null="true"/>
+        </property>
+        
+         <property name="contentLink" type="java.lang.String">
+            <column name="contentLink" length="150" not-null="true"/>
+        </property>
+        
+         <property name="contentPassword" type="java.lang.String">
+            <column name="contentPassword" length="20" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.hnist.modul.ContactInformation" table="ContactInformation" catalog="foxjixie">
+       
+        <id name="ciId" type="java.lang.Integer">
+            <column name="ciId" length="15" />
+            <generator class="native"></generator>
+        </id>
+        
+         <property name="ciName" type="java.lang.String">
+            <column name="ciName" length="15" not-null="true"/>
+        </property>
+        
+         <property name="ciContant" type="java.lang.String">
+            <column name="ciContant" length="50" />
+        </property>
+
+
+        
+        
+        
+ 
+    </class>
+</hibernate-mapping>

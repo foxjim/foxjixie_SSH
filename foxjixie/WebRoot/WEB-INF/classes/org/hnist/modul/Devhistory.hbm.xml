@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.hnist.modul.Devhistory" table="Devhistory" catalog="foxjixie">
+       
+        <id name="dhid" type="java.lang.Integer">
+            <column name="dhid" length="15" />
+            <generator class="native"></generator>
+        </id>
+        
+         <property name="dhTime" type="java.lang.String">
+            <column name="dhTime" length="15" not-null="true"/>
+        </property>
+        
+         <property name="dhContent" type="java.lang.String">
+            <column name="dhContent" length="100" not-null="true"/>
+        </property>
+
+
+        
+        
+        
+ 
+    </class>
+</hibernate-mapping>
